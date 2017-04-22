@@ -12,4 +12,16 @@ Less Obvious
 For new pages like login page, party page, profile, etc...
 - Create a Folder like "Login", "Profile", etc... and then in that folder make an index.php file.
   - index.php will act as the main page
+  
+  
+API Keys and info Below:
 
+Google Maps Javascript API Key: AIzaSyAja1VIM1FqrdXzsjrqw-wcz2QNCswoboE
+
+MySQL info:
+  IP-Address: 
+  UserName: root
+  Password: Wh3re$Th3Cl0sestKany3P4rtyAt
+  
+  
+Facebook App ID: 1672987282715886
