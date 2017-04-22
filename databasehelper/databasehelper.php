@@ -37,6 +37,44 @@ function getDB(){
   	return $mysqli;
 }
 
+function saveFacebookUser($mysqli, $user){
+   $checkQuery = 'SELECT ID FROM Users WHERE FacebookID = ?';
+
+    $checkStatement = $mysqli->prepare($checkQuery);
+    $checkStatement->bind_param("s", $user->facebookID);
+    $checkStatement->execute();
+    $checkStatement->store_result();
+    $tempUserID = 0;
+    $checkStatement->bind_result($tempUserID);
+    $checkStatement->fetch();
+
+    $row_count = $checkStatement->num_rows;
+    $checkStatement->close();
+
+    if($row_count > 0){
+      $user->userID = $tempUserID;
+      return $user;
+    }else{
+      $insertQuery = "INSERT INTO Users (FirstName, LastName, Email, FacebookID) VALUES (?,?,?,?)";
+
+      $statement = $mysqli->prepare($insertQuery);
+      
+      $statement->bind_param("ssss", $user->firstName, $user->lastName, $user->email, $user->facebookID);
+
+      $statement->execute();
+
+      $id = $statement->insert_id;
+
+      if($id > 0){
+        $user->userID = $id;
+        return $user;
+      }else{
+        return false;
+      }
+    }
+    
+}
+
 function createEvent($mysqli, $event){
 	$insertQuery = "INSERT INTO Events (Title, Date, StartTime, Address, Lat, Lon, Description, ImageURL, PrivacyType, Features, CoverCharge, SpotifyPlaylist, Timestamp) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
@@ -148,40 +186,40 @@ function loginCheck(){
     $checkQuery = 'SELECT UserID, encryptedID FROM UserCookies WHERE UserID = ?';
 
     $checkStatement = $mysqli->prepare($checkQuery);
-	$checkStatement->bind_param("i", $userID);
-	$checkStatement->execute();
-	$checkStatement->store_result();
-	$checkStatement->fetch();
-	$row_count = $checkStatement->num_rows;
+  	$checkStatement->bind_param("i", $userID);
+  	$checkStatement->execute();
+  	$checkStatement->store_result();
+  	$checkStatement->fetch();
+  	$row_count = $checkStatement->num_rows;
 
-	$result = null;
-   
+  	$result = null;
+     
 
-    if($check->num_rows > 0){
-    	$updateQuery = 'UPDATE UserCookies SET encryptedID = ? WHERE UserID = ?';
+      if($checkStatement->num_rows > 0){
+      	$updateQuery = 'UPDATE UserCookies SET encryptedID = ? WHERE UserID = ?';
 
-    	$statement = $mysqli->prepare($insertQuery);
-	
-		$statement->bind_param("si", $encryptedID, $userID);
+      	$statement = $mysqli->prepare($updateQuery);
+  	
+    		$statement->bind_param("si", $encryptedID, $userID);
 
-		$result = $statement->execute();
+    		$result = $statement->execute();
 
-    }else{
-    	$insertQuery = 'INSERT INTO UserCookies (UserID, EncryptedID) VALUES(?,?)';
+      }else{
+      	$insertQuery = 'INSERT INTO UserCookies (UserID, EncryptedID) VALUES(?,?)';
 
-    	$statement = $mysqli->prepare($insertQuery);
-	
-		$statement->bind_param("is",$userID, $encryptedID);
+      	$statement = $mysqli->prepare($insertQuery);
+  	
+  		$statement->bind_param("is",$userID, $encryptedID);
 
-		$result = $statement->execute();
-    }
-   
+  		$result = $statement->execute();
+      }
+     
 
-    if($result){
-      return $encryptedID;
-    }else{
-      return false;
-    }
+      if($result){
+        return $encryptedID;
+      }else{
+        return false;
+      }
   }
 
   function getEncryptedUserIDCookie($mysqli, $encryptedCookie){
