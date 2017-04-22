@@ -74,6 +74,16 @@
   	</div>
 
   <div id="eventInfo" class="card">
+
+  <div class="row">
+  	<div class="card col s4" id="leftPanel">
+  		
+  	</div>
+
+  	<div class="col s8" id="centralPanel">
+  		
+  	</div>
+  </div>
   	
 
   </div>
@@ -91,7 +101,7 @@ $(document).ready(function(){
 	$(".listItemContainer").click(function(){
 
 		$("#mainTabs").slideUp(function(){
-					$("#eventInfo").slideDown();
+			$("#eventInfo").slideDown();
 
 		})
 
