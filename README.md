@@ -25,3 +25,5 @@ MySQL info:
   
   
 Facebook App ID: 1672987282715886
+
+Stipe Test Key: sk_test_dQa2CvZAK2mnz9htGXiAyo4w
