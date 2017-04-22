@@ -19,7 +19,7 @@ API Keys and info Below:
 Google Maps Javascript API Key: AIzaSyAja1VIM1FqrdXzsjrqw-wcz2QNCswoboE
 
 MySQL info:
-  IP-Address: 
+  IP-Address: 104.154.166.171
   UserName: root
   Password: Wh3re$Th3Cl0sestKany3P4rtyAt
   
