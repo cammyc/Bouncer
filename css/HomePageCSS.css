@@ -16,6 +16,7 @@
 	width: 50px;
 	margin-top: 5px;
 	margin-left: 5px;
+	padding-right: 5px;
 }
 
 .imageTitleHeader{
@@ -31,3 +32,4 @@
 	margin-top: 5px;
 	float: right;
 }
+
