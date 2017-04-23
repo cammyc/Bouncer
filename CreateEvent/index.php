@@ -90,7 +90,7 @@
 <!-- Image URL -->
     <div class="row">
       <div class="input-field col s12">
-        <input id="event_image" name="event_image" type="url" class="validate">
+        <input id="event_image" name="event_image" type="text" class="validate">
         <label for="event_image">Event Image URL</label>
       </div>
     </div>

@@ -23,6 +23,7 @@
 	width: 100%;
 	height: 60px;
 	float: left;
+	cursor: pointer;
 }
 
 .titleText{
@@ -33,3 +34,20 @@
 	float: right;
 }
 
+
+#eventInfo{
+	position: absolute;
+	width: 1000px;
+	height: 600px;
+	left: 50%;
+	margin-left: -500px;
+	top: 50%;
+	margin-top: -300px;
+	/*display: none;*/
+}
+
+#leftPanel{
+	position: absolute;
+	height: 580px;
+	margin: 10px;
+}
